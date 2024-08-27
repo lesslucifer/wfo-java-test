@@ -1,0 +1,5 @@
+.idea/
+*.DS_Store
+WFOTest3/.gradle/
+WFOTest3/.mvn/
+WFOTest3/target/
