@@ -14,5 +14,5 @@ import java.util.Set;
 @Table(name = "tutorials")
 public class TutorialWithAvg extends Tutorial {
   @Column(name = "average_score")
-  private Float averageScore;
+  private Double averageScore;
 }

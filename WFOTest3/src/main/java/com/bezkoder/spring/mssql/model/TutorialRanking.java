@@ -24,8 +24,8 @@ public class TutorialRanking {
   @Column(name = "tutorial_id")
   private long tutorialId;
 
-  @Column(name = "scrore")
-  private long scrore;
+  @Column(name = "score")
+  private long score;
 
   @Column(name = "description")
   private String description;
@@ -36,9 +36,9 @@ public class TutorialRanking {
   @JoinColumn(name="tutorial_id", referencedColumnName="id", insertable=false, updatable=false)
   private Tutorial tutorial;
 
-  public TutorialRanking(long tutorialId, long scrore, String description) {
+  public TutorialRanking(long tutorialId, long score, String description) {
     this.tutorialId = tutorialId;
-    this.scrore = scrore;
+    this.score = score;
     this.description = description;
   }
 }

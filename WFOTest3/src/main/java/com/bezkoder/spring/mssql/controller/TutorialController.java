@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bezkoder.spring.mssql.repository.TutorialRepository;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("/api")
 public class TutorialController {

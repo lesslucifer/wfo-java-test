@@ -15,7 +15,7 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
           + "              FROM tutorial_rankings TR "
           + "              GROUP BY TR.tutorial_id) AS TR "
           + "   ON T.id = TR.tutorial_id"
-          + "   WHERE (:title IS NULL AND T.title IS NULL) OR T.title = :title",
+          + "   WHERE (COALESCE(:title, NULL) IS NULL OR T.title = :title)",
           nativeQuery=true)
   List<TutorialWithAvg> findByTitle(String title);
 }
