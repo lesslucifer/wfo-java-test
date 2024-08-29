@@ -14,17 +14,8 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
           + "   LEFT JOIN (SELECT TR.tutorial_id as tutorial_id, AVG(TR.score) as average_score "
           + "              FROM tutorial_rankings TR "
           + "              GROUP BY TR.tutorial_id) AS TR "
-          + "   ON T.id = TR.tutorial_id",
-          nativeQuery=true)
-  List<TutorialWithAvg> findAllTutorial();
-
-  @Query(value="SELECT T.*, TR.average_score"
-          + "   FROM tutorials T"
-          + "   LEFT JOIN (SELECT TR.tutorial_id as tutorial_id, AVG(TR.score) as average_score "
-          + "              FROM tutorial_rankings TR "
-          + "              GROUP BY TR.tutorial_id) AS TR "
           + "   ON T.id = TR.tutorial_id"
-          + "   WHERE T.title = :title",
+          + "   WHERE (:title IS NULL AND T.title IS NULL) OR T.title = :title",
           nativeQuery=true)
   List<TutorialWithAvg> findByTitle(String title);
 }

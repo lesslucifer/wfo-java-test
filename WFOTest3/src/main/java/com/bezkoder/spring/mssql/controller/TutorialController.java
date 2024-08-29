@@ -27,12 +27,8 @@ public class TutorialController {
 	@GetMapping("/tutorials")
 	public ResponseEntity<List<TutorialResponse>> getAllTutorials(@RequestParam(required = false) String title) {
 		try {
-			List<TutorialWithAvg> tutorials = new ArrayList<>();
 
-			if (title == null)
-                tutorials.addAll(tutorialRepository.findAllTutorial());
-			else
-                tutorials.addAll(tutorialRepository.findByTitle(title));
+            List<TutorialWithAvg> tutorials = new ArrayList<>(tutorialRepository.findByTitle(title));
 
 			if (tutorials.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
