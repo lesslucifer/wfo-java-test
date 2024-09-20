@@ -27,9 +27,9 @@ public class Tutorial {
   @Column(name = "published")
   private boolean published;
 
-  @OneToMany(mappedBy="tutorial", cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)
-  @Builder.Default
-  private Set<TutorialRanking> tutorialRankings = new HashSet<>();
+//  @OneToMany(mappedBy="tutorial", cascade=CascadeType.ALL, orphanRemoval=true, fetch=FetchType.LAZY)
+//  @Builder.Default
+//  private Set<TutorialRanking> tutorialRankings = new HashSet<>();
 
   public Tutorial(String title, String description, boolean published) {
     this.title = title;

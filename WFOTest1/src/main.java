@@ -1,9 +1,33 @@
 import org.junit.jupiter.api.Test;
+
+import java.util.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class main {
+
+    public static List<Integer> getDuplicatedNumbers(int[] arr) {
+        Map<Integer, Integer> temp = new HashMap<>();
+        Set<Integer> result = new HashSet<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            Integer item = arr[i];
+            Integer countItem = temp.getOrDefault(arr[i],0);
+
+            temp.put(item, countItem + 1);
+
+            if (temp.get(item) >= 2) {
+                result.add(item);
+            }
+        }
+        return result.stream().toList();
+    }
+
     public static int sumOfDuplicates(int[] arr) {
-        return 0;
+        List<Integer> duplicatedNums = getDuplicatedNumbers(arr);
+        return duplicatedNums.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 
     public static void main(String[] args) {

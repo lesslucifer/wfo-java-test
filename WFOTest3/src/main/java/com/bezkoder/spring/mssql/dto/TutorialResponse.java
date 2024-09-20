@@ -28,10 +28,10 @@ public class TutorialResponse {
                            .title(tutorial.getTitle())
                            .description(tutorial.getDescription())
                            .averageScore(tutorial.getAverageScore())
-                           .tutorialRankings(tutorial.getTutorialRankings()
-                                                     .stream()
-                                                     .map(TutorialRankingResponse::from)
-                                                     .collect(Collectors.toSet()))
+//                           .tutorialRankings(tutorial.getTutorialRankings()
+//                                                     .stream()
+//                                                     .map(TutorialRankingResponse::from)
+//                                                     .collect(Collectors.toSet()))
                            .build();
   }
 }

@@ -13,6 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name = "tutorials")
 public class TutorialWithAvg extends Tutorial {
+
   @Column(name = "average_score")
   private Double averageScore;
 }
