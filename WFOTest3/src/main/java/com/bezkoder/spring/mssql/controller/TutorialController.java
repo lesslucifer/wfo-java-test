@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import com.bezkoder.spring.mssql.dto.TutorialResponse;
 import com.bezkoder.spring.mssql.model.TutorialWithAvg;
+import com.bezkoder.spring.mssql.svc.TutorialSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +23,15 @@ import com.bezkoder.spring.mssql.repository.TutorialRepository;
 @RequestMapping("/api")
 public class TutorialController {
 	@Autowired
-	TutorialRepository tutorialRepository;
+	TutorialSvc tutorialSvc;
 
+	// paging
+	// cache
 	@GetMapping("/tutorials")
 	public ResponseEntity<List<TutorialResponse>> getAllTutorials(@RequestParam(required = false) String title) {
 		try {
 
-            List<TutorialWithAvg> tutorials = new ArrayList<>(tutorialRepository.findByTitle(title));
+            List<TutorialWithAvg> tutorials = new ArrayList<>(tutorialSvc.findByTitle(title));
 
 			if (tutorials.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);

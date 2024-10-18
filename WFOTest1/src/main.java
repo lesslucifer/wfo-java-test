@@ -1,9 +1,18 @@
 import org.junit.jupiter.api.Test;
+
+import java.util.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class main {
     public static int sumOfDuplicates(int[] arr) {
-        return 0;
+        Map<Integer, Integer> dupValueMap = new HashMap<>();
+        for (int j : arr) {
+            dupValueMap.put(j, dupValueMap.getOrDefault(j, 0) + 1);
+        }
+        Optional<Integer> sum = dupValueMap.entrySet().stream().filter(e -> e.getValue() > 1)
+                .map(Map.Entry::getKey).reduce(Integer::sum);
+        return sum.orElse(0);
     }
 
     public static void main(String[] args) {

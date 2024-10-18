@@ -13,6 +13,10 @@ import java.util.Set;
 @AllArgsConstructor
 @Table(name = "tutorials")
 public class TutorialWithAvg extends Tutorial {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+
+  private long id;
   @Column(name = "average_score")
   private Double averageScore;
 }
