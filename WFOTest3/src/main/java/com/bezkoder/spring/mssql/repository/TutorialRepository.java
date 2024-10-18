@@ -9,9 +9,9 @@ import com.bezkoder.spring.mssql.model.Tutorial;
 import org.springframework.data.jpa.repository.Query;
 
 public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
-  @Query(value="SELECT T.*, TR.average_score"
+  @Query(value="SELECT T.*"
           + "   FROM tutorials T"
-          + "   LEFT JOIN (SELECT TR.tutorial_id as tutorial_id, AVG(TR.score) as average_score "
+          + "   LEFT JOIN (SELECT TR.tutorial_id as tutorial_id "
           + "              FROM tutorial_rankings TR "
           + "              GROUP BY TR.tutorial_id) AS TR "
           + "   ON T.id = TR.tutorial_id"

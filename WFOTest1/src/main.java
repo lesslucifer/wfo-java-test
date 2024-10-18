@@ -1,9 +1,25 @@
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class main {
     public static int sumOfDuplicates(int[] arr) {
-        return 0;
+        HashMap<Integer, Boolean> isSumMap = new HashMap<>();
+        int sum = 0;
+        for (int ele : arr) {
+            if (isSumMap.containsKey(ele)) {
+                Boolean isSum = isSumMap.get(ele);
+                if (!isSum) {
+                    sum += ele;
+                    isSumMap.put(ele, true);
+                }
+            } else {
+                isSumMap.put(ele, false);
+            }
+        }
+        return sum;
     }
 
     public static void main(String[] args) {

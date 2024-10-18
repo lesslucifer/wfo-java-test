@@ -22,12 +22,14 @@ public class TutorialResponse {
   private Double averageScore;
   private Set<TutorialRankingResponse> tutorialRankings = new HashSet<>();
 
-  public static TutorialResponse from(TutorialWithAvg tutorial) {
+  public static TutorialResponse from(Tutorial tutorial) {
+    Double averageScore = tutorial.getTutorialRankings().stream().mapToLong(TutorialRanking::getScore).summaryStatistics()
+            .getAverage();
     return TutorialResponse.builder()
                            .id(tutorial.getId())
                            .title(tutorial.getTitle())
                            .description(tutorial.getDescription())
-                           .averageScore(tutorial.getAverageScore())
+                           .averageScore(averageScore)
                            .tutorialRankings(tutorial.getTutorialRankings()
                                                      .stream()
                                                      .map(TutorialRankingResponse::from)
