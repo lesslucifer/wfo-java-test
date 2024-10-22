@@ -15,23 +15,23 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TutorialResponse {
-  private long id;
-  private String title;
-  private String description;
-  private boolean published;
-  private Double averageScore;
-  private Set<TutorialRankingResponse> tutorialRankings = new HashSet<>();
+    private long id;
+    private String title;
+    private String description;
+    private boolean published;
+    private Double averageScore;
+    private Set<TutorialRankingResponse> tutorialRankings = new HashSet<>();
 
-  public static TutorialResponse from(TutorialWithAvg tutorial) {
-    return TutorialResponse.builder()
-                           .id(tutorial.getId())
-                           .title(tutorial.getTitle())
-                           .description(tutorial.getDescription())
-                           .averageScore(tutorial.getAverageScore())
-                           .tutorialRankings(tutorial.getTutorialRankings()
-                                                     .stream()
-                                                     .map(TutorialRankingResponse::from)
-                                                     .collect(Collectors.toSet()))
-                           .build();
-  }
+    public static TutorialResponse from(TutorialWithAvg tutorial) {
+        return TutorialResponse.builder()
+                .id(tutorial.getId())
+                .title(tutorial.getTitle())
+                .description(tutorial.getDescription())
+                .averageScore(tutorial.getAverageScore())
+                .tutorialRankings(tutorial.getTutorialRankings()
+                        .stream()
+                        .map(TutorialRankingResponse::from)
+                        .collect(Collectors.toSet()))
+                .build();
+    }
 }
