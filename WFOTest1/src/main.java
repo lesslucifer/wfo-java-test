@@ -1,9 +1,20 @@
 import org.junit.jupiter.api.Test;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class main {
     public static int sumOfDuplicates(int[] arr) {
-        return 0;
+        Set<Integer> checkSet = new HashSet<>();
+        Set<Integer> resultSet = new HashSet<>();
+        for (int i=0; i<arr.length;i++) {
+            if (!checkSet.add(arr[i])) {
+                resultSet.add(arr[i]);
+            }
+        }
+        return resultSet.stream().mapToInt(Integer::intValue).sum();
     }
 
     public static void main(String[] args) {
