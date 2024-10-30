@@ -30,7 +30,7 @@ public class TutorialRanking {
   @Column(name = "description")
   private String description;
 
-  @ManyToOne(fetch=FetchType.LAZY)
+  @ManyToOne(fetch=FetchType.EAGER)
   @LazyToOne(LazyToOneOption.NO_PROXY)
   @LazyGroup("tutorial")
   @JoinColumn(name="tutorial_id", referencedColumnName="id", insertable=false, updatable=false)

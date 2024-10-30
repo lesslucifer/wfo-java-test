@@ -1,13 +1,33 @@
 import org.junit.jupiter.api.Test;
+
+import java.util.HashSet;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class main {
     public static int sumOfDuplicates(int[] arr) {
-        return 0;
+        HashSet<Integer> traverseArr = new HashSet<>();
+        HashSet<Integer> duplicateArr = new HashSet<>();
+        int sum = 0;
+
+        for (int num : arr) {
+            if (traverseArr.contains(num) && !duplicateArr.contains(num)) {
+                sum += num;
+                duplicateArr.add(num);
+            } else {
+                traverseArr.add(num);
+            }
+        }
+
+        return sum;
     }
 
     public static void main(String[] args) {
         int[] numbers = {1, 3, 2, 3, 5, 1, 6, 3, 3, 2, 4};
+        // 1, 3, 2
+//        int[] numbers = {1, 3, 2, 4, 5};
+//        int[] numbers = {3, 3, 3, 4,  4, 5};
+//        int[] numbers = {1, 2, 2, 3, 5, 5};
         int result = sumOfDuplicates(numbers);
         System.out.println("Sum of duplicates: " + result);
     }
