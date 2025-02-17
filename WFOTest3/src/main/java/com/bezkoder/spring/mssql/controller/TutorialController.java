@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import com.bezkoder.spring.mssql.dto.TutorialResponse;
 import com.bezkoder.spring.mssql.model.TutorialWithAvg;
+import com.bezkoder.spring.mssql.repository.TutorialRankingRepository;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,18 +26,24 @@ public class TutorialController {
 	@Autowired
 	TutorialRepository tutorialRepository;
 
+	@Autowired
+	TutorialRankingRepository tutorialRankingRepository;
+
 	@GetMapping("/tutorials")
 	public ResponseEntity<List<TutorialResponse>> getAllTutorials(@RequestParam(required = false) String title) {
 		try {
-
             List<TutorialWithAvg> tutorials = new ArrayList<>(tutorialRepository.findByTitle(title));
-
 			if (tutorials.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 
+			var listTutorialRanking = tutorialRankingRepository.findAll();
 			return new ResponseEntity<>(tutorials.stream()
-												 .map(TutorialResponse::from)
+												 .map(tutorialWithAvg ->
+														 TutorialResponse
+														 .from(tutorialWithAvg, listTutorialRanking.stream()
+														 .filter(el -> el.getTutorialId() == tutorialWithAvg.getId())
+																 .collect(Collectors.toList())))
 												 .collect(Collectors.toList()), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

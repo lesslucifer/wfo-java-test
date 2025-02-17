@@ -4,8 +4,10 @@ import com.bezkoder.spring.mssql.model.Tutorial;
 import com.bezkoder.spring.mssql.model.TutorialRanking;
 import com.bezkoder.spring.mssql.model.TutorialWithAvg;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,13 +24,13 @@ public class TutorialResponse {
   private Double averageScore;
   private Set<TutorialRankingResponse> tutorialRankings = new HashSet<>();
 
-  public static TutorialResponse from(TutorialWithAvg tutorial) {
+  public static TutorialResponse from(TutorialWithAvg tutorial, List<TutorialRanking> tutorialRankings) {
     return TutorialResponse.builder()
                            .id(tutorial.getId())
                            .title(tutorial.getTitle())
                            .description(tutorial.getDescription())
                            .averageScore(tutorial.getAverageScore())
-                           .tutorialRankings(tutorial.getTutorialRankings()
+                           .tutorialRankings(tutorialRankings
                                                      .stream()
                                                      .map(TutorialRankingResponse::from)
                                                      .collect(Collectors.toSet()))

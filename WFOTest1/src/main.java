@@ -1,9 +1,21 @@
 import org.junit.jupiter.api.Test;
+
+import java.util.HashSet;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class main {
     public static int sumOfDuplicates(int[] arr) {
-        return 0;
+        var set = new HashSet<Integer>();
+        var set2 = new HashSet<Integer>();
+        for (int i = 0; i < arr.length; i++) {
+            if(!set.add(arr[i])) {
+                set.remove(arr[i]);
+            }
+            set2.add(arr[i]);
+        }
+
+        return set2.stream().mapToInt(i -> i).sum() - set.stream().mapToInt(i -> i).sum();
     }
 
     public static void main(String[] args) {
