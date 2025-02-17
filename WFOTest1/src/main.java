@@ -1,9 +1,32 @@
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class main {
     public static int sumOfDuplicates(int[] arr) {
-        return 0;
+        if (arr == null || arr.length == 0) return 0;
+
+        int res = 0;
+
+        Map<Integer, Integer> map = new HashMap<>();
+        List<Integer> temp = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (!temp.contains(arr[i])) {
+                temp.add(arr[i]);
+                map.put(arr[i], 1);
+            } else {
+                map.put(arr[i], map.get(arr[i]) + 1);
+                if (map.get(arr[i]) == 2) {
+                    res = res + arr[i];
+                }
+            }
+        }
+        return res;
     }
 
     public static void main(String[] args) {
