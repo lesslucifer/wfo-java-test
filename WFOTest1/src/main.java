@@ -9,24 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class main {
     public static int sumOfDuplicates(int[] arr) {
-        if (arr == null || arr.length == 0) return 0;
-
-        int res = 0;
-
-        Map<Integer, Integer> map = new HashMap<>();
-        List<Integer> temp = new ArrayList<>();
-        for (int i = 0; i < arr.length; i++) {
-            if (!temp.contains(arr[i])) {
-                temp.add(arr[i]);
-                map.put(arr[i], 1);
-            } else {
-                map.put(arr[i], map.get(arr[i]) + 1);
-                if (map.get(arr[i]) == 2) {
-                    res = res + arr[i];
-                }
-            }
-        }
-        return res;
+        return 0;
     }
 
     public static void main(String[] args) {
