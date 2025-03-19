@@ -1,8 +1,10 @@
 package com.bezkoder.spring.mssql.repository;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 import com.bezkoder.spring.mssql.model.TutorialWithAvg;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.bezkoder.spring.mssql.model.Tutorial;

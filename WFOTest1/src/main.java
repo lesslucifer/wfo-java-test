@@ -1,9 +1,23 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.HashMap;
 
 public class main {
     public static int sumOfDuplicates(int[] arr) {
-        return 0;
+        int sum = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int num : arr) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        for (int key: map.keySet()) {
+            if (map.get(key) > 1) {
+                sum += key;
+            }
+        }
+
+        return sum;
     }
 
     public static void main(String[] args) {
