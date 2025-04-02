@@ -15,4 +15,5 @@ import java.util.Set;
 public class TutorialWithAvg extends Tutorial {
   @Column(name = "average_score")
   private Double averageScore;
+
 }

@@ -1,0 +1,14 @@
+###
+GET localhost:8080/api/tutorials
+
+# curl --location 'localhost:8080/api/tutorials?title=Cognatus%20debitis%20soleo.'
+###
+GET localhost:8080/api/tutorials?title=Cognatus%20debitis%20soleo.
+
+###
+
+GET localhost:8080/api/v2/tutorials?title=Cognatus%20debitis%20soleo.
+###
+
+
+
