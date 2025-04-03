@@ -13,14 +13,16 @@ All data for tutorials and rankings is pre-populated in the database using an SQ
 
 There is an existing API endpoint that retrieves all tutorials or tutorials filtered by title. However, this endpoint is not optimized for performance, especially when dealing with a large number of tutorials and rankings.
 
-## Existing API Endpoint
+## Question 3.1: Optimize API Performance
+
+### Existing API Endpoint
 
 - **HTTP Method**: GET
 - **Endpoint**: `/api/tutorials`
 - **Query Parameters**:
   - `title` (optional): String to filter tutorials by title
 
-## Task
+### Task
 
 Your task is to optimize the existing `/api/tutorials` endpoint to improve its performance. The optimized endpoint should:
 
@@ -28,7 +30,7 @@ Your task is to optimize the existing `/api/tutorials` endpoint to improve its p
 2. Handle large datasets efficiently.
 3. Minimize database queries and optimize data fetching.
 
-## Evaluation Criteria
+### Evaluation Criteria
 
 Your solution will be evaluated based on the following criteria:
 
@@ -38,3 +40,29 @@ Your solution will be evaluated based on the following criteria:
 4. Proper use of Spring Boot and JPA features
 
 Good luck with your optimization task!
+
+## Question 3.2: Implement Caching
+
+### Requirements
+
+1. Implement caching for the tutorial management system with the following specifications:
+   - Automatically update cached entity objects when corresponding database entities are modified
+   - Create an additional API endpoint for updating tutorials to test the cache invalidation
+   - Ensure cache consistency with the database
+
+### Evaluation Criteria
+
+Your caching implementation will be evaluated based on:
+
+1. Proper implementation of Spring Cache
+2. Correct cache invalidation strategy
+3. Cache consistency maintenance
+4. Performance improvements with caching
+5. Proper handling of cache updates when entities are modified
+
+### Additional API Endpoint
+
+- **HTTP Method**: PUT
+- **Endpoint**: `/api/tutorials/{id}`
+- **Request Body**: Tutorial update data
+- **Purpose**: Update tutorial information and test cache invalidation
