@@ -1,12 +1,14 @@
 package com.bezkoder.spring.mssql.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.bezkoder.spring.mssql.model.TutorialWithAvg;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.bezkoder.spring.mssql.model.Tutorial;
 import org.springframework.data.jpa.repository.Query;
+
 
 public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
   @Query(value="SELECT T.*, TR.average_score"
@@ -15,7 +17,13 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
           + "              FROM tutorial_rankings TR "
           + "              GROUP BY TR.tutorial_id) AS TR "
           + "   ON T.id = TR.tutorial_id"
-          + "   WHERE (COALESCE(:title, NULL) IS NULL OR T.title = :title)",
+          + "   WHERE (COALESCE(:title, NULL) IS NULL OR T.title = :title)"
+          + "   ORDER BY TR.average_score DESC"
+          +  "  OFFSET 0 ROWS FETCH NEXT 50 ROWS ONLY",
           nativeQuery=true)
   List<TutorialWithAvg> findByTitle(String title);
+
+  Optional<Tutorial> findById(Long id);
+
+
 }
